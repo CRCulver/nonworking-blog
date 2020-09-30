@@ -1,0 +1,30 @@
+baseurl = "/"
+languageCode = "en"
+title = "Non-Working Blog"
+theme = "hugo-xmin"
+googleAnalytics = ""
+disqusShortname = ""
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+footnotereturnlinkcontents = "↩"
+paginate = 10
+uglyURLs = true
+
+[permalinks]
+	posts = "/:slug"
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+[[menu.main]]
+    name = "Subscribe"
+    url = "/index.xml"
+
+[params]
+    description = "An example Hugo site made to document the issue reported at Stackoverflow question 64095087"
+    footer = ""
+
+[markup]
+ [markup.goldmark]
+   [markup.goldmark.renderer]
+     unsafe = true

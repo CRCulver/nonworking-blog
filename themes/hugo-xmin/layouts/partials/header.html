@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ .Title | markdownify }} | {{ .Site.Title }}</title>
+    <link rel="stylesheet" media="screen" href="{{ "/css/style.css" | relURL }}" />
+    {{ partial "head_custom.html" . }}
+  </head>
+  <body>
+    <h1 id="sitetitle">{{ .Site.Title }}</h1>
+    <p id="sitedescription">{{ $.Site.Params.description }}</p>
+    <nav>
+    <ul class="menu">
+      {{ range .Site.Menus.main }}
+      <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+    <hr/>
+    </nav>

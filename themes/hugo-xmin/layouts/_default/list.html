@@ -1,0 +1,36 @@
+{{ partial "header.html" . }}
+
+{{if not .IsHome }}
+<h1>{{ .Title | markdownify }}</h1>
+{{ end }}
+
+{{ .Content }}
+
+
+  {{ $pages := .Pages }}
+
+  {{ if not .IsHome }}{{ $pages = .Site.RegularPages }}
+<ul>
+  {{ $paginator := .Paginate (where $pages "Section" "!=" "") }}
+  {{ range $paginator.Pages }}
+  <li>
+    <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+    <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+  </li>
+  {{ end }}
+</ul>
+  {{ end }}
+  {{ if .IsHome }}{{ $pages = .Site.RegularPages }}
+  {{ $paginator := .Paginate (where $pages "Section" "!=" "") }}
+  {{ range $paginator.Pages }}
+<article>
+  <h2 class="posttitle">{{ .Title | markdownify }}</h2>
+  Published on <a href="{{ .RelPermalink }}"><time>{{ .Date.Format "2006-01-02" }}</time></a>
+  {{ .Content | markdownify }}
+    </article>
+    {{ end }}
+  {{ end }}
+
+{{ template "_internal/pagination.html" . }}
+
+{{ partial "footer.html" . }}
